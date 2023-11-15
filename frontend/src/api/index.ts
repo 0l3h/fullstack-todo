@@ -26,7 +26,7 @@ export async function getTasks({
 
 export async function createTask(task: TaskBody): Promise<Message> {
   return (
-    await fetch(`http://${url}/add-task`, {
+    await fetch(`${url}/add-task`, {
       method: "POST",
       body: JSON.stringify(task),
       headers: {
@@ -45,7 +45,7 @@ export async function updateTask({
   isDone: boolean;
 }): Promise<Task> {
   return (
-    await fetch(`http://${url}/update-task/${id}`, {
+    await fetch(`${url}/update-task/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,5 @@ export async function updateTask({
 }
 
 export async function deleteTask(id: number): Promise<Message> {
-  return (
-    await fetch(`http://${url}/delete-task/${id}`, { method: "DELETE" })
-  ).json();
+  return (await fetch(`${url}/delete-task/${id}`, { method: "DELETE" })).json();
 }
