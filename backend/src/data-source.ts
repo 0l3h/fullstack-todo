@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { Task } from "./entity/task.entity.js";
-import config from "./config/db.config.js";
+import { Task } from "./entity/task.entity";
+import config from "./config/db.config";
 
 console.log(`${__dirname}/migrations/`);
 
