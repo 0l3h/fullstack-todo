@@ -8,6 +8,7 @@
     "dev": "nodemon src/app.ts",
     "build": "tsc",
     "serve": "node dist/app.js",
+    "typeorm": "typeorm-ts-node-esm",
     "setup": "chmod u+x setup.sh && setup.sh"
   },
   "keywords": [],

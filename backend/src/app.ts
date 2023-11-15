@@ -15,14 +15,6 @@ const app = express();
 AppDataSource.initialize()
   .then((dataSource) => {
     console.log("Database has initialized\n");
-    dataSource
-      .runMigrations()
-      .then(() => {
-        console.log("Migrations had executed successfuly\n");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   })
   .catch((error) => console.error(error));
 
