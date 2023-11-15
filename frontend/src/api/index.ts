@@ -3,7 +3,7 @@ import { Task, TaskBody } from "@/types/task.types";
 
 const url =
   process.env.NODE_ENV === "production"
-    ? process.env.NEXT_PUBLIC_SERVER_URL
+    ? "https://backend-1234-production.up.railway.app"
     : `http://${process.env.NEXT_PUBLIC_DB_HOST}:${process.env.NEXT_PUBLIC_DB_PORT}`;
 
 export async function getTasks({
