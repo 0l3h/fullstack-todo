@@ -3,8 +3,8 @@ import { Task, TaskBody } from "@/types/task.types";
 
 const url =
   process.env.NODE_ENV === "production"
-    ? `http://${process.env.NEXT_PUBLIC_DB_HOST}:${process.env.NEXT_PUBLIC_DB_PORT}`
-    : process.env.SERVER_URL;
+    ? process.env.SERVER_URL
+    : `http://${process.env.NEXT_PUBLIC_DB_HOST}:${process.env.NEXT_PUBLIC_DB_PORT}`;
 
 export async function getTasks({
   filter,
