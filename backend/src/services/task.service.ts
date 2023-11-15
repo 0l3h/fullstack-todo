@@ -2,7 +2,7 @@ import { FindOptionsWhere, ILike } from "typeorm";
 import { Message } from "../types/common.types";
 import { ITask, TaskBody } from "../types/task.types";
 import { AppDataSource } from "../data-source";
-import { Task } from "../entity/task.entity.ts";
+import { Task } from "../entity/task.entity";
 
 const tasksRepository = AppDataSource.getRepository(Task);
 
