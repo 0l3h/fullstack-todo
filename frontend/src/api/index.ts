@@ -26,17 +26,14 @@ export async function getTasks({
 
 export async function createTask(task: TaskBody): Promise<Message> {
   return (
-    await fetch(
-      `http://${process.env.NEXT_PUBLIC_DB_HOST}:${process.env.NEXT_PUBLIC_DB_PORT}/add-task`,
-      {
-        method: "POST",
-        body: JSON.stringify(task),
-        headers: {
-          "Content-Type": "application/json",
-          Accepts: "application/json",
-        },
+    await fetch(`http://${url}/add-task`, {
+      method: "POST",
+      body: JSON.stringify(task),
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
       },
-    )
+    })
   ).json();
 }
 
@@ -48,25 +45,19 @@ export async function updateTask({
   isDone: boolean;
 }): Promise<Task> {
   return (
-    await fetch(
-      `http://${process.env.NEXT_PUBLIC_DB_HOST}:${process.env.NEXT_PUBLIC_DB_PORT}/update-task/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accepts: "application/json",
-        },
-        body: JSON.stringify({ isDone }),
+    await fetch(`http://${url}/update-task/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
       },
-    )
+      body: JSON.stringify({ isDone }),
+    })
   ).json();
 }
 
 export async function deleteTask(id: number): Promise<Message> {
   return (
-    await fetch(
-      `http://${process.env.NEXT_PUBLIC_DB_HOST}:${process.env.NEXT_PUBLIC_PORT}/delete-task/${id}`,
-      { method: "DELETE" },
-    )
+    await fetch(`http://${url}/delete-task/${id}`, { method: "DELETE" })
   ).json();
 }
