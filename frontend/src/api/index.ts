@@ -11,12 +11,7 @@ export async function getTasks({
   const params = new URLSearchParams();
   search && params.append("searchBy", search);
   filter && params.append("filterBy", filter);
-  console.log(process.env.NEXT_PUBLIC_DB_HOST);
-  console.log(
-    `http://${process.env.NEXT_PUBLIC_DB_HOST}:${
-      process.env.NEXT_PUBLIC_DB_PORT
-    }/get-tasks?${params.toString()}`,
-  );
+
   return (
     await fetch(
       `http://${process.env.NEXT_PUBLIC_DB_HOST}:${

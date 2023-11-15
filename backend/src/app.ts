@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import {
   createTask,
@@ -32,6 +33,11 @@ app.get("/get-tasks/:filterBy?", getTasks);
 app.post("/add-task", createTask);
 app.patch("/update-task/:id", updateTask);
 app.delete("/delete-task/:id", deleteTask);
+
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(error);
+  res.send(error);
+});
 
 app.listen(PORT, () => {
   console.log("Server is listening on port: ", PORT);

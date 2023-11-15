@@ -2,7 +2,7 @@ import { FindOptionsWhere, ILike } from "typeorm";
 import { Message } from "../types/common.types";
 import { ITask, TaskBody } from "../types/task.types";
 import { AppDataSource } from "../data-source";
-import { Task } from "../entity/task.entity";
+import { Task } from "../entity/task.entity.js";
 
 const tasksRepository = AppDataSource.getRepository(Task);
 
@@ -13,7 +13,6 @@ async function getTasks({
   searchBy?: string;
   filterBy: string;
 }): Promise<ITask[]> {
-  console.log("search by: ", searchBy);
   const tasks = await tasksRepository.find({
     where: {
       title: searchBy ? ILike(`%${searchBy}%`) : undefined,
@@ -22,7 +21,6 @@ async function getTasks({
     order: { priority: "ASC" },
   });
 
-  console.log(tasks);
   return tasks;
 }
 
@@ -42,13 +40,11 @@ async function updateTask({
   id: number;
   isDone: boolean;
 }): Promise<Task> {
-  console.log(id);
   const task = await tasksRepository.save({
     id,
     isDone,
     status: isDone ? "done" : "undone",
   });
-  console.log("updated task: ", task);
   return task;
 }
 
