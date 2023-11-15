@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm i && npm run build && "typeorm migration:run"
-
-EXPOSE 5000
+RUN ./setup.sh
 
 CMD ["npm", "run", "serve"]

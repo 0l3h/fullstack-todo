@@ -1,6 +1,9 @@
 #!/bin/bash
 
-(echo "------------- Compiling typescript ------------") &&
-npm run build && 
+(echo "------------- Installing dependencies ------------") && 
+npm i && 
 (echo "------------- Running migrations ------------") &&
-typeorm migration:run
+npx typeorm migration:run -d src/data-source.ts &&
+
+(echo "------------- Compiling typescript ------------") &&
+npm run build 
