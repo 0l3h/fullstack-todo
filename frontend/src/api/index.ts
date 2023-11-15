@@ -1,6 +1,11 @@
 import { Message } from "@/types/common.types";
 import { Task, TaskBody } from "@/types/task.types";
 
+const url =
+  process.env.NODE_ENV === "production"
+    ? `http://${process.env.NEXT_PUBLIC_DB_HOST}:${process.env.NEXT_PUBLIC_DB_PORT}`
+    : process.env.SERVER_URL;
+
 export async function getTasks({
   filter,
   search,
@@ -13,14 +18,9 @@ export async function getTasks({
   filter && params.append("filterBy", filter);
 
   return (
-    await fetch(
-      `http://${process.env.NEXT_PUBLIC_DB_HOST}:${
-        process.env.NEXT_PUBLIC_DB_PORT
-      }/get-tasks?${params.toString()}`,
-      {
-        next: { revalidate: 0 },
-      },
-    )
+    await fetch(`${url}/get-tasks?${params.toString()}`, {
+      next: { revalidate: 0 },
+    })
   ).json();
 }
 
