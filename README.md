@@ -27,7 +27,7 @@ Also, in order to connect to the database you would have to setup environment va
 
 ## Technologies
 
-For fetching data I decided to go with simple `fetch` function and React Query library for lightweight data querying. At some point I thought about using Redux for state management and Redux Saga to handle querying side effects, but those would require a lot more redundant and repetitive code for this app.
+For fetching data I decided to go with simple `fetch` function and React Query library for lightweight data querying. At some point I thought about using Redux for state management and Redux Saga to handle querying side effects, but those would require a lot more redundant and repetitive code for this app. Also, debouncing is emplemented in order to not overload both server and client with search requests and UI updates.
 
 Server had set up with Node.js along with Express. Apart from that I decided to use **ts-node** package to be able to write Node.js server in TypeScript code and then compile it to ordinary JavaScript via `npm run build` command.
 
