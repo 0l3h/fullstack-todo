@@ -8,6 +8,8 @@ COPY package*.json ./
 
 RUN npm i
 
+RUN npm run lint
+
 COPY . .
 
 RUN npm run build
