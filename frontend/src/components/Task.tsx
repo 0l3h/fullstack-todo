@@ -1,12 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  SetDataOptions,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { createTask, deleteTask, getTasks, updateTask } from "@/api";
+import { useMutation } from "@tanstack/react-query";
+import { updateTask } from "@/api";
 import { Task } from "@/types/task.types";
 
 function TaskBox({
@@ -32,18 +28,29 @@ function TaskBox({
   });
 
   return (
-    <li key={Math.random()} className="bg-white p-5 m-10">
-      <b>{task.id} </b>
+    <li key={Math.random()} className="bg-white p-5 mb-10 rounded-lg">
+      <span className="font-bold text-xs">ID {task.id} </span>
       <p>{task.title} </p>
-      <span>Status: {isDone ? "done" : "undone"} </span>
-      <span>Priority: {task.priority} </span>
-      <button
-        className="bg-blue-400 hover:bg-blue-600"
-        onClick={() => updateStatus({ id: task.id, isDone: !isDone })}
-      >
-        {isDone ? "Undone" : "Done"}
-      </button>
-      <button onClick={() => removeHandler(task.id)}>Delete</button>
+      <span className="font-sm text-sm text-gray-400">
+        Status: {isDone ? "Done" : "Undone"}{" "}
+      </span>
+      <span className="font-sm text-sm text-gray-400">
+        Priority: {task.priority}{" "}
+      </span>
+      <div className="flex justify-end items-center gap-5">
+        <button
+          className="underline text-red-600"
+          onClick={() => removeHandler(task.id)}
+        >
+          Delete
+        </button>
+        <button
+          className="bg-indigo-500 px-4 py-2 rounded-sm text-white"
+          onClick={() => updateStatus({ id: task.id, isDone: !isDone })}
+        >
+          {isDone ? "Undone" : "Done"}
+        </button>
+      </div>
     </li>
   );
 }
