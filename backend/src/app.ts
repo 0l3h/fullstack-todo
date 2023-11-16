@@ -18,13 +18,21 @@ AppDataSource.initialize()
   })
   .catch((error) => console.error(error));
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL && "*",
+  }),
+);
 app.use(express.json());
 
 app.get("/get-tasks/:filterBy?", getTasks);
 app.post("/add-task", createTask);
 app.patch("/update-task/:id", updateTask);
 app.delete("/delete-task/:id", deleteTask);
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(404).send("Requested resource was not found");
+});
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(error);
